@@ -1,15 +1,15 @@
 {
     "name": "Minidlna",
-    "version": "0.4",
+    "version": "0.4.3",
     "slug": "minidlna",
     "description": "MiniDLNA",
-    "url": "https://github.com/cavaliere78/ha_minidlna",
+    "url": "https://github.com/andrion/ha_minidlna",
     "startup": "services",
     "boot": "auto",
     "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
     "ports": {
-              "1900/udp": 1900
-             },	
+      "1900/udp": 1900
+    },    
     "map": ["config:rw", "ssl:rw", "addons:rw", "share:rw", "backup:rw", "media:rw"],
     "privileged": [
       "NET_ADMIN"
@@ -18,17 +18,20 @@
       "/dev/net/tun"
     ],
     "host_network": true,
+    "init": false,
     "options": {
       "media_dir": "/media;/share",
-	  "options": "-d"
+      "options": "-d",
+      "friendly_name": "HA DLNA"
     },
     "schema": {
       "media_dir": "str",
-	  "options": "str"
+      "options": "str",
+      "friendly_name": "str"
     },
-        "ingress_port": 9998,
-	"webui": "http://[HOST]:[PORT:9998]",
-	"ingress": true,
+    "ingress_port": 9998,
+    "webui": "http://[HOST]:[PORT:9998]",
+    "ingress": true,
 
     "panel_icon": "mdi:dlna",
     "panel_title": "MiniDLNA"

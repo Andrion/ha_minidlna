@@ -14,16 +14,17 @@ ingress_entry=$(bashio::addon.ingress_entry)
 
 MEDIA_DIR="$(bashio::config 'media_dir')"
 dirlist=$(echo $MEDIA_DIR | tr ";" "\n")
+friendly_name="$(bashio::config 'friendly_name')"
+
+sed -i "s/%%port%%/${ingress_port}/g" /etc/minidlna.conf
 
 for dir in $dirlist
 do
     echo "> setting media dir: [media_dir=$dir]"
-	sed -i "/XXXmedia_dirXXX/a \media_dir=$dir" /etc/minidlna.conf
+	sed -i "/#media_dir/a \media_dir=$dir" /etc/minidlna.conf
 done
-#MEDIA_DIR2="$(bashio::config 'media_dir2')"
-#sed -i "s%XXXmedia_dir2XXX%$MEDIA_DIR2%g" /etc/minidlna.conf
 
-sed -i "s/%%port%%/${ingress_port}/g" /etc/minidlna.conf
+sed -i "s/^#\(friendly_name\).*/\1=$friendly_name/" /etc/minidlna.conf
 
 OPTIONS="$(bashio::config 'options')"
 bashio::log.info "Starting MiniDLNA..."

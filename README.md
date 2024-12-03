@@ -12,6 +12,7 @@ Copy the url of this addon into "Supervisor" -> "Addon Store" -> "Add New reposi
 ```yaml
 media_dir: V,/media;/share
 options: -d
+friendly_name: HA DLNA
 ```
 
 ### Option `media_dir`
@@ -34,6 +35,9 @@ Usage:
                 [-t notify_interval] [-P pid_filename]
                 [-s serial] [-m model_number]
                 [-w url] [-r] [-R] [-L] [-S] [-V] [-h]
+
+### Option `friendly_name`
+Update this if you want to customize the name that shows up on your clients
 
 Notes:
         Notify interval is in seconds. Default is 895 seconds.
